@@ -1,37 +1,45 @@
 
 
 
-from databases import *
-from car_url_open import *
-from multi_browser_in_multi_tab import *
-
 import time
+from store_data_database import *
+from car_url_open import *
+from open_car_url_single_browser import *
 
 
 def main():
-    print("-----------main---------------")
+    # # -------first operation-----------
 
-    # fetch car url 
-    car_url_list = fetch_car_url()
+    # fetch_kia_location_url_table data 
+    car_url_list = fetch_cars_url_table()
 
-    # # ------------operation 1 (open url in 5 tab inside single browser)------------------------
-    # # open car url in browser 
-    # car_url_open(list_data=car_url_list)
+    # # --------operatin 1 open car url in 5 browser--------------
+    # # without thread
+    # # open_car_page(list_data = car_url_list)
 
-    # ------------operation 2 (open url in 5 tab inside every browser like 5)------------------------
-
-    run_url_thread_wise(car_url_list)
+    # # with thread
+    # run_thread_futures(car_url_list)
 
     
+    # --------operatin 2 open car url is open in 5 tab inside  single browser  --------------
+    # without thread
+    open_url_single_browser(car_url_list)
+
+    # # # with thread
+
+    # run_thread_wise(car_url_list)
 
 
 
 
 
 
-start_time = time.time()
 
-main()
 
-print("time different : " , time.time() - start_time)
 
+
+if __name__ == "__main__":
+    start = time.time()
+    main()
+    end = time.time()
+    print("time different  : ", end - start)
